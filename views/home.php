@@ -1,13 +1,24 @@
 <?php
-    $data = new EmployesController();
-    $employes = $data->getAllEmployes();
-    // print_r($employes)
+    if (isset($_POST['find'])){
+        $data = new EmployesController();
+        $employes = $data->findEmployes();
+    }else{
+        $data = new EmployesController();
+        $employes = $data->getAllEmployes();
+    }
 ?>
 
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12 mx-auto">
+            <?php include ('./views/includes/alert.php');?>
             <a href="<?php echo base?>add" class="btn btn-outline-info">Ajouter</a>
+            <form method="post" class="float-right d-flex flex-row">
+                        <input  type="search" name="search" placeholder="Rechercher" class="form-control" />
+                    <button  type="submit" name="find" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+            </form>
             <table class="table table-striped table-hover text-center">
                 <thead>
                 <tr>

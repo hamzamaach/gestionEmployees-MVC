@@ -20,6 +20,17 @@ class EmployesController
         return $employe;
     }
 
+    public function findEmployes()
+    {
+        if (isset($_POST['search'])){
+            $data = array(
+                'search'=> $_POST['search']
+            );
+        }
+        $employes = Employe::searchEmployes($data);
+        return $employes;
+    }
+
     public function ajouterEmploye()
     {
         if (isset($_POST['add'])){
@@ -32,6 +43,7 @@ class EmployesController
             );
             $resultat = Employe::add($employe);
             if ($resultat === 'ok'){
+                Session::set('success',"L'employé a été ajouter !" );
                 Redirect::to('home');
             }else{
                 echo $resultat;
@@ -52,6 +64,7 @@ class EmployesController
             );
             $resultat = Employe::update($employe);
             if ($resultat === 'ok'){
+                Session::set('success',"L'employé a été modifier !" );
                 Redirect::to('home');
             }else{
                 echo $resultat;
@@ -65,6 +78,7 @@ class EmployesController
             $id = $_POST['id'];
             $resultat = Employe::delete($id);
             if ($resultat === 'ok') {
+                Session::set('success',"L'employé a été supprimmer !" );
                 Redirect::to('home');
             } else {
                 echo $resultat;

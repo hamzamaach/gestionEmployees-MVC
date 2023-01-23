@@ -23,6 +23,28 @@ class Employe{
         }
     }
 
+
+    static public function searchEmployes($data){
+        $search = $data['search'];
+        try {
+            $query = 'SELECT * FROM employe 
+                        WHERE nom LIKE ? 
+                        OR prenom LIKE ?
+                          ';
+            $stmt = DB::connect()->prepare($query);
+            $stmt->execute(array('%'.$search.'%','%'.$search.'%'));
+            return $stmt->fetchAll();
+            if ($stmt->execute()){
+                return 'ok';
+            }
+            $stmt->close();
+            $stmt = null;
+        }catch (PDOException $ex){
+            echo 'error'.$ex->getMessage();
+        }
+    }
+
+
     static public function add($employe){
         $stmt = DB::connect()->prepare('INSERT INTO 
             employe(nom,prenom,statut,poste,sexe)

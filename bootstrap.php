@@ -1,5 +1,5 @@
-<?php 
+<?php
 
-define('BASE_URL','http://localhost/gestion-employes-chaine/')
+    define('base','http://localhost/gestion/')
 
 ?>

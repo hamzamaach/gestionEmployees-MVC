@@ -12,23 +12,25 @@
     <div class="row">
         <div class="col-md-12 mx-auto">
             <?php include ('./views/includes/alert.php');?>
-            <a href="<?php echo base?>add" class="btn btn-outline-info">Ajouter</a>
+            <a href="<?php echo base?>add" class="btn btn-outline-primary">Ajouter <i class="bi-person-plus-fill"></i></a>
+            <div class="" style="width: 300px; float: right">
             <form method="post" class="float-right d-flex flex-row">
                         <input  type="search" name="search" placeholder="Rechercher" class="form-control" />
                     <button  type="submit" name="find" class="btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button>
             </form>
+            </div>
             <table class="table table-striped table-hover text-center">
                 <thead>
                 <tr>
                     <th scope="col">#id</th>
-                    <th scope="col">nom</th>
-                    <th scope="col">prenom</th>
-                    <th scope="col">sexe</th>
-                    <th scope="col">poste</th>
-                    <th scope="col">statut</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Sexe</th>
+                    <th scope="col">Poste</th>
+                    <th scope="col">Statut</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,7 +66,7 @@
                             </form>
                             <form method="post" action="<?php echo base?>delete" class="d-inline">
                                 <input type="hidden" name="id" value="<?php echo $employe['id']; ?>">
-                                <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                <button class="btn btn-outline-danger"><i class="bi bi-person-x-fill"></i></button>
                             </form>
                         </td>
                     </tr>

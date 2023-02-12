@@ -64,6 +64,25 @@ class Employe{
         $stmt = null;
     }
 
+    static public function addExcel($employe){
+        $stmt = DB::connect()->prepare('INSERT INTO 
+            employe(nom,prenom,statut,poste,sexe)
+            values(:nom,:prenom,:statut,:poste,:sexe)
+            ');
+        $stmt->bindParam(':nom',$employe['nom']);
+        $stmt->bindParam(':prenom',$employe['prenom']);
+        $stmt->bindParam(':statut',$employe['statut']);
+        $stmt->bindParam(':poste',$employe['poste']);
+        $stmt->bindParam(':sexe',$employe['sexe']);
+        if($stmt->execute()){
+            return 'ok';
+        }else{
+            return 'error';
+        }
+        $stmt->close();
+        $stmt = null;
+    }
+
     static public function update($employe){
         $query = 'UPDATE employe
             SET

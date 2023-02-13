@@ -4,7 +4,8 @@ require_once './bootstrap.php';
 
 spl_autoload_register('autoload');
 
-function autoload($class_name){
+function autoload($class_name)
+{
     $array_paths = array(
         'database/',
         'app/classes/',
@@ -12,7 +13,7 @@ function autoload($class_name){
         'controllers/'
     );
 
-    $parts = explode('\\',$class_name);
+    $parts = explode('\\', $class_name);
     $name = array_pop($parts);
 
     foreach ($array_paths as $path) {
@@ -23,4 +24,5 @@ function autoload($class_name){
     }
 
 }
+
 ?>

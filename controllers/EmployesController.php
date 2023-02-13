@@ -1,6 +1,5 @@
 <?php
-// require_once './autoload.php';
-// echo $_POST['nom'] .'<br>'. $_POST['prenom'] .'<br>'. $_POST['statut'] .'<br>'. $_POST['poste'] .'<br>'. $_POST['sexe'].'<br>';
+
 class EmployesController
 {
     public function getAllEmployes()
@@ -31,6 +30,7 @@ class EmployesController
         return $employes;
     }
 
+//    Cette méthode est pour ajouter un employé
     public function ajouterEmploye()
     {
         if (isset($_POST['add'])) {
@@ -51,14 +51,12 @@ class EmployesController
         }
     }
 
-
+//    Cette méthode est pour inserer plusieur employés depuis un fichier excel
     public function ajouterExcel()
     {
         if (isset($_FILES['excel']['name'])) {
             include 'xlsx.php';
             $excel = SimpleXLSX::parse(($_FILES['excel']['tmp_name']));
-//            echo "<pre>";
-//            print_r($excel->rows());
             for ($sheet = 0; $sheet < sizeof($excel->sheetNames()); $sheet++) {
                 $i = 1;
                 $rowCol = $excel->dimension($sheet);
@@ -67,10 +65,7 @@ class EmployesController
                     foreach ($excel->rows($sheet) as $key => $row) {
                         $q = "";
                         $query = "";
-//                        foreach ($row as $key => $cell) {
                         if ($i != 0) {
-//                                print_r($row[0]);
-//                                echo gettype($row);
                             echo "<br>";
                             $employe = array(
                                 'nom' => $row[0],
@@ -80,10 +75,7 @@ class EmployesController
                                 'statut' => $row[4]
                             );
                         }
-//                        }
                         $i++;
-//                    print_r($employe);
-//                    echo "<br>";
                         $resultat = Employe::addExcel($employe);
                         if ($resultat === 'ok') {
                             Session::set('success', "Les employés a été ajouter !");
@@ -91,16 +83,15 @@ class EmployesController
                         } else {
                             echo $resultat;
                         }
-
                     }
                 }
             }
-//            Redirect::to('home');
         } else {
             edirect::to('404');
         }
     }
 
+//    Cette méthode est pour mettre à jour un employé
     public
     function updateEmploye()
     {
@@ -123,6 +114,7 @@ class EmployesController
         }
     }
 
+//    Cette méthode est pour supprimer un employé
     public
     function deleteEmploye()
     {

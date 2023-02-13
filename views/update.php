@@ -12,11 +12,11 @@ if (isset($_POST['update'])) {
 ?>
 
 <div class="container">
-    <div class="card bg-light">
+    <div class="card bg-light mt-4">
 
         <div>
             <a href="<?php echo base ?>home"
-               class="btn btn-primary btn-lg mm-3 "
+               class="btn btn-primary btn-lg mm-3 m-2 "
                role="button" aria-disabled="true">
                 <i class="bi bi-house bi--md">
                 </i> Home</a>
@@ -91,7 +91,7 @@ if (isset($_POST['update'])) {
                     <select
                             class="form-control"
                             name="statut">
-                        <option selected=""> Sélectionner une statut</option>
+                        <option selected disabled> Sélectionner une statut</option>
                         <option
                             <?php echo $employe->statut ? 'selected' : ''; ?>
                                 value="1"

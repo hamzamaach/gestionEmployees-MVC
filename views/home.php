@@ -66,12 +66,17 @@ if (isset($_POST['find'])) {
                             </form>
                             <form method="post" action="<?php echo base ?>delete" class="d-inline">
                                 <input type="hidden" name="id" value="<?php echo $employe['id']; ?>">
-                                <button class="btn btn-outline-danger"><i class="bi bi-person-x-fill"></i></button>
+                                <button class="btn btn-outline-danger" onclick="suppressionAlert()" ><i class="bi bi-person-x-fill"></i></button>
                             </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
+                <script>
+                    function suppressionAlert() {
+                        alert("Voulez-vous supprimer l'employé ?")
+                    }
+                </script>
             </table>
         </div>
     </div>
